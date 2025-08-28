@@ -43,16 +43,19 @@ You can find a longer, illustrated version of these instructions at: ( https://c
 1.  Download and run the latest (current) version of the installer (`msys2-x86_64-current.exe`) with the default options (in the default location--`C:\msys64\`).
 2.	The installer will do a few things and then ask to run MSYS2 when it is done. Make sure it is selected and run MSYS2. (You can also now find “MSYS2 MSYS” in the start menu).
 3.	This brings you to a command prompt. From here just type (or copy/paste!) the line below. This runs the package manager (not what you were thinking?) to download the current MinGW version. Then hit enter a few times to install the mingw packages.
-```
-pacman -S --needed base-devel mingw-w64-x86_64-gcc
-```
+    ```
+    pacman -S --needed base-devel mingw-w64-x86_64-gcc
+    ```
 4.	When it is done, you will be brought back to the command prompt. Exit this by typing `exit` or just closing the window.
 
 #### Set your Path
 1. Click the Windozzze start button and type `advanced system settings` to bring up the system properties window.
 1. Click on `Environment Variables` button.
 1. In the `System variables` box at the bottom, select `Path` and press the `Edit` button (at the bottom!).
-1. Click the `New` button and type `C:\msys64\mingw64\bin`.
+1. Click the `New` button and type
+    ```
+    C:\msys64\mingw64\bin
+    ```
 1. Close all windows and make sure to reboot when done.
 
 #### Optional: Install OpenGL and GLUT ( http://www.transmissionzero.co.uk/software/freeglut-devel/ )
@@ -69,8 +72,13 @@ pacman -S --needed base-devel mingw-w64-x86_64-gcc
 #### Install XCode with C++ Compiler
 
 1. Launch the MacOS Terminal application. In case you are unfamiliar with this, it is a tool that allows you to type in commands and get their results as text output. You will be using the Terminal intermittently during the course. Type `[command]+space` to bring up Spotlight Search and type `terminal`. Press `[return]` to launch.
-1. To install the basic C++ compiler and utilities, type `xcode-select --install` and hit `[return]`.  When you do this, it will prompt you to confirm installation. From this point on, the installation is graphical. You will see a download window showing download and installation progress.
-   * Note the option `Get Xcode`. Xcode is Apple's integrated development environment for developing software for its computers, phones, and other devices. If you find that interesting, go ahead and download it! However, it is not needed for the course, it is a very large download (9+ GB), the install takes longer, and you can always download it again later.
+2. To install the basic C++ compiler and utilities, type
+    ```
+    xcode-select --install
+    ```
+    and hit `[return]`.  When you do this, it will prompt you to confirm installation. From this point on, the installation is graphical. You will see a download window showing download and installation progress.
+
+Note the option `Get Xcode`. Xcode is Apple's integrated development environment for developing software for its computers, phones, and other devices. If you find that interesting, go ahead and download it! However, it is not needed for the course, it is a very large download (9+ GB), the install takes longer, and you can always download it again later.
 
 #### Optional: Install OpenGL and GLUT
 There is no need to install anything other than the above to get OpenGL working on a Mac. However, instead of including `<GL/glut.h>`, you will need to include `<GLUT/glut.h>` where ever appropriate. Also, note that not all features (especially advanced concepts like materials and textures) may not work properly.
@@ -80,32 +88,33 @@ There is no need to install anything other than the above to get OpenGL working 
 ### <u>Linux (Raspbian) Installation Specifics</u>
 
 #### Install Visual Studio Code (Code-OSS)
+These instructions are probably out of date. But they should give you a nice starting point. Good luck!
 1. If you've previously installed `code-oss` andit is not working properly (installs other than version 1.29), you'll need to purge it prior to starting:
-    ```{bash}
+    ```
     sudo apt-get purge code-oss
     ```
 1. Download GPG signing key from PackageCloud: [https://packagecloud.io/headmelted/codebuilds/gpgkey](https://packagecloud.io/headmelted/codebuilds/gpgkey)
 1. Import GPG key
-    ```{bash}
+    ```
     gpg --import /home/pi/Downloads/headmelted-code-oss-0CC3FD642696BFC8.pub.gpg
     gpg --list-keys
      ```
 1. Install the PackageCloud repository for code-oss
-    ```{bash}
+    ```
     curl -s https://packagecloud.io/install/repositories/headmelted/codebuilds/script.deb.sh | sudo bash
     ```
 1. Install code-oss
-    ```{bash}
+    ```
     sudo apt-get install code-oss=1.29.0-1539702238
     ```
 1. Tell `apt` to hold at version 1.29, since 1.32 doesn't work properly
-    ```{bash}
+    ```
     sudo apt-mark hold code-oss
     ```
 
 #### Install GLUT
 1. From the terminal, simply type:
-    ```{bash}
+    ```
     sudo apt-get install freeglut3-dev g++
     ```
 
